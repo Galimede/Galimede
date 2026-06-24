@@ -30,10 +30,14 @@ FILE MANAGER ▸ yazi
 
 ## ▚ TELEMETRY
 
-[![GALIMEDE · stats](https://github-readme-stats.vercel.app/api?username=Galimede&hide_border=true&show_icons=true&bg_color=1e1e2e&title_color=fab387&text_color=cdd6f4&icon_color=f9e2af&ring_color=fab387#gh-dark-mode-only)](https://github.com/Galimede)
-[![GALIMEDE · stats](https://github-readme-stats.vercel.app/api?username=Galimede&hide_border=true&show_icons=true&bg_color=0A0A0A&title_color=FFB000&text_color=F2E8CF&icon_color=FFD66B&ring_color=FFB000#gh-light-mode-only)](https://github.com/Galimede)
-[![GALIMEDE · top langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Galimede&layout=compact&hide_border=true&bg_color=1e1e2e&title_color=fab387&text_color=cdd6f4#gh-dark-mode-only)](https://github.com/Galimede)
-[![GALIMEDE · top langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Galimede&layout=compact&hide_border=true&bg_color=0A0A0A&title_color=FFB000&text_color=F2E8CF#gh-light-mode-only)](https://github.com/Galimede)
+<a href="https://github.com/Galimede"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Galimede&hide_border=true&show_icons=true&bg_color=1e1e2e&title_color=fab387&text_color=cdd6f4&icon_color=f9e2af&ring_color=fab387">
+  <img alt="GALIMEDE · stats" src="https://github-readme-stats.vercel.app/api?username=Galimede&hide_border=true&show_icons=true&bg_color=0A0A0A&title_color=FFB000&text_color=F2E8CF&icon_color=FFD66B&ring_color=FFB000">
+</picture></a>
+<a href="https://github.com/Galimede"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Galimede&layout=compact&hide_border=true&bg_color=1e1e2e&title_color=fab387&text_color=cdd6f4">
+  <img alt="GALIMEDE · top langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Galimede&layout=compact&hide_border=true&bg_color=0A0A0A&title_color=FFB000&text_color=F2E8CF">
+</picture></a>
 
 ## ▚ TRANSMISSION LOG
 
