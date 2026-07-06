@@ -1,0 +1,44 @@
+name: Telemetry
+
+on:
+  schedule:
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: telemetry
+  cancel-in-progress: true
+
+jobs:
+  render:
+    name: Render TELEMETRY stat cards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate telemetry SVGs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STATS_LOGIN: Galimede
+        run: node .github/scripts/generate-telemetry.mjs
+
+      - name: Commit updated cards
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet -- assets/telemetry-amber.svg assets/telemetry-mocha.svg; then
+            echo 'No telemetry changes.'
+            exit 0
+          fi
+          git add assets/telemetry-amber.svg assets/telemetry-mocha.svg
+          git commit -m 'chore(telemetry): refresh stat cards'
+          git push

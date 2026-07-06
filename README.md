@@ -31,13 +31,11 @@ FILE MANAGER ▸ yazi
 ## ▚ TELEMETRY
 
 <a href="https://github.com/Galimede"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=Galimede&hide_border=true&show_icons=true&bg_color=1e1e2e&title_color=fab387&text_color=cdd6f4&icon_color=f9e2af&ring_color=fab387&locale=en">
-  <img alt="GALIMEDE · stats" src="https://github-readme-stats.vercel.app/api?username=Galimede&hide_border=true&show_icons=true&bg_color=0A0A0A&title_color=FFB000&text_color=F2E8CF&icon_color=FFD66B&ring_color=FFB000">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/telemetry-mocha.svg">
+  <img alt="GALIMEDE · telemetry" src="./assets/telemetry-amber.svg">
 </picture></a>
-<a href="https://github.com/Galimede"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=Galimede&layout=compact&hide_border=true&bg_color=1e1e2e&title_color=fab387&text_color=cdd6f4">
-  <img alt="GALIMEDE · top langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Galimede&layout=compact&hide_border=true&bg_color=0A0A0A&title_color=FFB000&text_color=F2E8CF">
-</picture></a>
+
+<sub>▸ self-hosted static cards, refreshed daily by `.github/workflows/telemetry.yml`</sub>
 
 ## ▚ TRANSMISSION LOG
 
