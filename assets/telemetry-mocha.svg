@@ -17,7 +17,7 @@
   <text x="366" y="112" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">0</text>
   <line x1="44" y1="119" x2="366" y2="119" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="141" font-size="13" fill="#6c7086">COMMITS · 12MO</text>
-  <text x="366" y="141" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">97</text>
+  <text x="366" y="141" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">99</text>
   <line x1="44" y1="148" x2="366" y2="148" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="170" font-size="13" fill="#6c7086">PULL REQUESTS</text>
   <text x="366" y="170" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">15</text>
@@ -29,26 +29,26 @@
   <text x="366" y="228" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">4</text>
   <line x1="44" y1="235" x2="366" y2="235" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="257" font-size="13" fill="#6c7086">CONTRIBUTED TO</text>
-  <text x="366" y="257" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">5</text>
+  <text x="366" y="257" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">4</text>
   <line x1="44" y1="264" x2="366" y2="264" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="430" y="112" font-size="13" fill="#cdd6f4">HTML</text>
-  <text x="776" y="112" font-size="12" fill="#6c7086" text-anchor="end">29.8%</text>
+  <text x="776" y="112" font-size="12" fill="#6c7086" text-anchor="end">30.7%</text>
   <rect x="430" y="120" width="346" height="6" rx="3" fill="#45475a"/>
   <rect x="430" y="120" width="346.0" height="6" rx="3" fill="#e34c26"/>
   <text x="430" y="145" font-size="13" fill="#cdd6f4">JavaScript</text>
-  <text x="776" y="145" font-size="12" fill="#6c7086" text-anchor="end">15.5%</text>
+  <text x="776" y="145" font-size="12" fill="#6c7086" text-anchor="end">14.9%</text>
   <rect x="430" y="153" width="346" height="6" rx="3" fill="#45475a"/>
-  <rect x="430" y="153" width="179.9" height="6" rx="3" fill="#f1e05a"/>
+  <rect x="430" y="153" width="167.2" height="6" rx="3" fill="#f1e05a"/>
   <text x="430" y="178" font-size="13" fill="#cdd6f4">CSS</text>
-  <text x="776" y="178" font-size="12" fill="#6c7086" text-anchor="end">13.8%</text>
+  <text x="776" y="178" font-size="12" fill="#6c7086" text-anchor="end">14.2%</text>
   <rect x="430" y="186" width="346" height="6" rx="3" fill="#45475a"/>
   <rect x="430" y="186" width="160.3" height="6" rx="3" fill="#663399"/>
   <text x="430" y="211" font-size="13" fill="#cdd6f4">Python</text>
-  <text x="776" y="211" font-size="12" fill="#6c7086" text-anchor="end">8.8%</text>
+  <text x="776" y="211" font-size="12" fill="#6c7086" text-anchor="end">9.1%</text>
   <rect x="430" y="219" width="346" height="6" rx="3" fill="#45475a"/>
   <rect x="430" y="219" width="102.6" height="6" rx="3" fill="#3572A5"/>
   <text x="430" y="244" font-size="13" fill="#cdd6f4">Java</text>
-  <text x="776" y="244" font-size="12" fill="#6c7086" text-anchor="end">8.5%</text>
+  <text x="776" y="244" font-size="12" fill="#6c7086" text-anchor="end">8.1%</text>
   <rect x="430" y="252" width="346" height="6" rx="3" fill="#45475a"/>
-  <rect x="430" y="252" width="98.6" height="6" rx="3" fill="#b07219"/>
+  <rect x="430" y="252" width="91.0" height="6" rx="3" fill="#b07219"/>
 </svg>
