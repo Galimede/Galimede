@@ -17,16 +17,16 @@
   <text x="366" y="112" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">0</text>
   <line x1="44" y1="119" x2="366" y2="119" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="141" font-size="13" fill="#6c7086">COMMITS · 12MO</text>
-  <text x="366" y="141" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">99</text>
+  <text x="366" y="141" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">98</text>
   <line x1="44" y1="148" x2="366" y2="148" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="170" font-size="13" fill="#6c7086">PULL REQUESTS</text>
-  <text x="366" y="170" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">15</text>
+  <text x="366" y="170" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">12</text>
   <line x1="44" y1="177" x2="366" y2="177" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="199" font-size="13" fill="#6c7086">CODE REVIEWS</text>
   <text x="366" y="199" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">42</text>
   <line x1="44" y1="206" x2="366" y2="206" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="228" font-size="13" fill="#6c7086">ISSUES</text>
-  <text x="366" y="228" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">4</text>
+  <text x="366" y="228" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">3</text>
   <line x1="44" y1="235" x2="366" y2="235" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="257" font-size="13" fill="#6c7086">CONTRIBUTED TO</text>
   <text x="366" y="257" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">4</text>
