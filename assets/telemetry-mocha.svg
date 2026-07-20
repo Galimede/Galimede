@@ -17,10 +17,10 @@
   <text x="366" y="112" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">0</text>
   <line x1="44" y1="119" x2="366" y2="119" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="141" font-size="13" fill="#6c7086">COMMITS · 12MO</text>
-  <text x="366" y="141" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">98</text>
+  <text x="366" y="141" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">96</text>
   <line x1="44" y1="148" x2="366" y2="148" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="170" font-size="13" fill="#6c7086">PULL REQUESTS</text>
-  <text x="366" y="170" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">12</text>
+  <text x="366" y="170" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">11</text>
   <line x1="44" y1="177" x2="366" y2="177" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="199" font-size="13" fill="#6c7086">CODE REVIEWS</text>
   <text x="366" y="199" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">42</text>
