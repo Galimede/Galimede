@@ -4,6 +4,12 @@
 // API with its own token and this script draws the SVG in GALIMEDE's palette,
 // matching the hand-made hero cards in assets/.
 //
+// The contribution ledger is split into two groups so the time scope of each
+// metric is explicit: commits/PRs/reviews/issues come from the contributions
+// collection (a trailing ~12-month window, labelled with its real dates), while
+// stars and repositories-contributed-to are cumulative. A 52-week activity
+// trace under the ledger gives the window a visible shape.
+//
 // Env:
 //   GITHUB_TOKEN  — token used for the GraphQL request (workflow token)
 //   STATS_LOGIN   — GitHub login to profile (default: Galimede)
@@ -40,10 +46,18 @@ const QUERY = `
 query($login: String!) {
   user(login: $login) {
     contributionsCollection {
+      startedAt
+      endedAt
       totalCommitContributions
       totalPullRequestContributions
       totalIssueContributions
       totalPullRequestReviewContributions
+      contributionCalendar {
+        weeks {
+          firstDay
+          contributionDays { contributionCount }
+        }
+      }
     }
     repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, PULL_REQUEST, ISSUE, REPOSITORY]) {
       totalCount
@@ -58,6 +72,14 @@ query($login: String!) {
     }
   }
 }`;
+
+const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+// "2024-07-15T..." → "2024·07"
+const stamp = (iso) => {
+  const d = new Date(iso);
+  return `${d.getUTCFullYear()}·${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+};
 
 async function fetchData() {
   const res = await fetch('https://api.github.com/graphql', {
@@ -95,16 +117,44 @@ async function fetchData() {
       color: langColors.get(name) || '#888888',
     }));
 
+  // Weekly contribution totals, most recent 52 weeks, plus month boundaries.
+  const calendarWeeks = c.contributionCalendar.weeks.slice(-52);
+  const trace = calendarWeeks.map((w) => w.contributionDays.reduce((n, d) => n + d.contributionCount, 0));
+  const ticks = [];
+  let prevMonth = -1;
+  calendarWeeks.forEach((w, i) => {
+    const month = new Date(`${w.firstDay}T00:00:00Z`).getUTCMonth();
+    if (month !== prevMonth) ticks.push({ label: MONTHS[month], i });
+    prevMonth = month;
+  });
+  // The window opens mid-month, so the leading tick is a stub that collides with
+  // the next label — and its month already appears at the other end of the axis.
+  if (ticks.length > 12) ticks.shift();
+
+  const window = `${stamp(c.startedAt)} → ${stamp(c.endedAt)}`;
+
   return {
-    stats: [
-      ['STARS EARNED', stars],
-      ['COMMITS · 12MO', c.totalCommitContributions],
-      ['PULL REQUESTS', c.totalPullRequestContributions],
-      ['CODE REVIEWS', c.totalPullRequestReviewContributions],
-      ['ISSUES', c.totalIssueContributions],
-      ['CONTRIBUTED TO', u.repositoriesContributedTo.totalCount],
+    groups: [
+      {
+        label: window,
+        rows: [
+          ['COMMITS', c.totalCommitContributions],
+          ['PULL REQUESTS', c.totalPullRequestContributions],
+          ['CODE REVIEWS', c.totalPullRequestReviewContributions],
+          ['ISSUES', c.totalIssueContributions],
+        ],
+      },
+      {
+        label: 'CUMULATIVE',
+        rows: [
+          ['STARS EARNED', stars],
+          ['CONTRIBUTED TO', u.repositoriesContributedTo.totalCount],
+        ],
+      },
     ],
     langs,
+    trace,
+    ticks,
   };
 }
 
@@ -112,30 +162,58 @@ async function fetchData() {
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const fmt = (n) => n.toLocaleString('en-US');
 
-function render(theme, key, { stats, langs }) {
+// Geometry. The card grew from 300 to 390 tall to make room for the trace.
+const W = 820, H = 390;
+const PAD = 44, RIGHT = W - PAD;
+const COL2 = 430, BAR_W = 346;
+const TRACE_X = PAD, TRACE_W = RIGHT - PAD, TRACE_TOP = 320, TRACE_H = 30;
+const BASE_Y = TRACE_TOP + TRACE_H;
+
+function render(theme, { groups, langs, trace, ticks }) {
   const t = THEMES[theme];
-  const W = 820, H = 300;
   const FONT = "ui-monospace, 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace";
 
-  // Left column: stat rows.
-  const rowY0 = 112, rowH = 29;
-  const statRows = stats.map(([label, value], i) => {
-    const y = rowY0 + i * rowH;
-    return `  <text x="44" y="${y}" font-size="13" fill="${t.dim}">${esc(label)}</text>
+  // Left column: grouped stat rows, each group introduced by its time scope.
+  const ROW_H = 26;
+  let y = 106;
+  const statRows = groups.map(({ label, rows }) => {
+    const head = `  <text x="${PAD}" y="${y}" font-size="10" fill="${t.dim}" letter-spacing="0.5">&#9666; ${esc(label)} &#9656;</text>`;
+    y += 20;
+    const body = rows.map(([name, value]) => {
+      const row = `  <text x="${PAD}" y="${y}" font-size="13" fill="${t.dim}">${esc(name)}</text>
   <text x="366" y="${y}" font-size="14" font-weight="600" fill="${t.accent}" text-anchor="end">${esc(fmt(value))}</text>
-  <line x1="44" y1="${y + 7}" x2="366" y2="${y + 7}" stroke="${t.bar}" stroke-width="1" stroke-dasharray="1 4"/>`;
+  <line x1="${PAD}" y1="${y + 7}" x2="366" y2="${y + 7}" stroke="${t.bar}" stroke-width="1" stroke-dasharray="1 4"/>`;
+      y += ROW_H;
+      return row;
+    }).join('\n');
+    y += 4;
+    return `${head}\n${body}`;
   }).join('\n');
 
   // Right column: language bars.
-  const barX = 430, barW = 346, langY0 = 112, langH = 33;
+  const LANG_H = 33;
   const maxPct = Math.max(...langs.map((l) => l.pct), 1);
   const langRows = langs.map((l, i) => {
-    const y = langY0 + i * langH;
-    const w = Math.max(2, (l.pct / maxPct) * barW);
-    return `  <text x="${barX}" y="${y}" font-size="13" fill="${t.text}">${esc(l.name)}</text>
-  <text x="${barX + barW}" y="${y}" font-size="12" fill="${t.dim}" text-anchor="end">${l.pct.toFixed(1)}%</text>
-  <rect x="${barX}" y="${y + 8}" width="${barW}" height="6" rx="3" fill="${t.bar}"/>
-  <rect x="${barX}" y="${y + 8}" width="${w.toFixed(1)}" height="6" rx="3" fill="${esc(l.color)}"/>`;
+    const ly = 112 + i * LANG_H;
+    const w = Math.max(2, (l.pct / maxPct) * BAR_W);
+    return `  <text x="${COL2}" y="${ly}" font-size="13" fill="${t.text}">${esc(l.name)}</text>
+  <text x="${COL2 + BAR_W}" y="${ly}" font-size="12" fill="${t.dim}" text-anchor="end">${l.pct.toFixed(1)}%</text>
+  <rect x="${COL2}" y="${ly + 8}" width="${BAR_W}" height="6" rx="3" fill="${t.bar}"/>
+  <rect x="${COL2}" y="${ly + 8}" width="${w.toFixed(1)}" height="6" rx="3" fill="${esc(l.color)}"/>`;
+  }).join('\n');
+
+  // Bottom strip: 52-week activity trace, an oscilloscope read-out of the window.
+  const n = trace.length;
+  const peak = Math.max(...trace, 1);
+  const px = (i) => TRACE_X + (n > 1 ? (i * TRACE_W) / (n - 1) : 0);
+  const py = (v) => BASE_Y - (v / peak) * TRACE_H;
+  const points = trace.map((v, i) => `${px(i).toFixed(1)},${py(v).toFixed(1)}`).join(' ');
+
+  const monthTicks = ticks.map(({ label, i }) => {
+    const x = px(i);
+    const rule = i === 0 ? '' :
+      `  <line x1="${x.toFixed(1)}" y1="${TRACE_TOP}" x2="${x.toFixed(1)}" y2="${BASE_Y}" stroke="${t.bar}" stroke-width="1"/>\n`;
+    return `${rule}  <text x="${Math.min(Math.max(x, 30), W - 30).toFixed(1)}" y="${BASE_Y + 14}" font-size="9" fill="${t.dim}" text-anchor="middle">${label}</text>`;
   }).join('\n');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="100%" font-family="${FONT}" role="img" aria-label="GALIMEDE telemetry — GitHub statistics">
@@ -147,14 +225,22 @@ function render(theme, key, { stats, langs }) {
   <circle cx="22" cy="${H - 22}" r="2.5" fill="${t.rivet}" stroke="${t.rivetStroke}" stroke-width="0.6"/>
   <circle cx="${W - 22}" cy="${H - 22}" r="2.5" fill="${t.rivet}" stroke="${t.rivetStroke}" stroke-width="0.6"/>
 
-  <text x="44" y="52" font-size="15" font-weight="600" fill="${t.title}">&#9622; TELEMETRY</text>
-  <text x="${W - 44}" y="52" font-size="12" fill="${t.dim}" text-anchor="end">SPECIMEN // ${esc(LOGIN.toUpperCase())}</text>
-  <line x1="44" y1="66" x2="${W - 44}" y2="66" stroke="${t.border}" stroke-width="1"/>
+  <text x="${PAD}" y="52" font-size="15" font-weight="600" fill="${t.title}">&#9622; TELEMETRY</text>
+  <text x="${RIGHT}" y="52" font-size="12" fill="${t.dim}" text-anchor="end">SPECIMEN // ${esc(LOGIN.toUpperCase())}</text>
+  <line x1="${PAD}" y1="66" x2="${RIGHT}" y2="66" stroke="${t.border}" stroke-width="1"/>
 
-  <text x="44" y="86" font-size="11" fill="${t.dim}">&#9656; CONTRIBUTION LEDGER</text>
-  <text x="430" y="86" font-size="11" fill="${t.dim}">&#9656; LANGUAGE DISTRIBUTION</text>
+  <text x="${PAD}" y="86" font-size="11" fill="${t.dim}">&#9656; CONTRIBUTION LEDGER</text>
+  <text x="${COL2}" y="86" font-size="11" fill="${t.dim}">&#9656; LANGUAGE DISTRIBUTION</text>
 ${statRows}
 ${langRows}
+
+  <line x1="${PAD}" y1="296" x2="${RIGHT}" y2="296" stroke="${t.border}" stroke-width="1"/>
+  <text x="${PAD}" y="312" font-size="11" fill="${t.dim}">&#9656; ACTIVITY &#183; 52-WEEK TRACE</text>
+  <text x="${RIGHT}" y="312" font-size="10" fill="${t.dim}" text-anchor="end">PEAK ${esc(fmt(peak))}/WK</text>
+  <line x1="${TRACE_X}" y1="${BASE_Y}" x2="${TRACE_X + TRACE_W}" y2="${BASE_Y}" stroke="${t.border}" stroke-width="1"/>
+${monthTicks}
+  <polygon points="${TRACE_X},${BASE_Y} ${points} ${TRACE_X + TRACE_W},${BASE_Y}" fill="${t.accent}" fill-opacity="0.18"/>
+  <polyline points="${points}" fill="none" stroke="${t.accent}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>`;
 }
 
@@ -162,9 +248,8 @@ ${langRows}
 try {
   const data = await fetchData();
   for (const theme of Object.keys(THEMES)) {
-    const svg = render(theme, theme, data);
     const out = join(ASSETS, `telemetry-${theme}.svg`);
-    writeFileSync(out, svg + '\n');
+    writeFileSync(out, render(theme, data) + '\n');
     console.log(`wrote ${out}`);
   }
 } catch (err) {
