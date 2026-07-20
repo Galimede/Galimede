@@ -30,10 +30,12 @@ FILE MANAGER ▸ yazi
 
 ## ▚ TELEMETRY
 
-<a href="https://github.com/Galimede"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/telemetry-mocha.svg">
-  <img alt="GALIMEDE · telemetry" src="./assets/telemetry-amber.svg">
-</picture></a>
+<a href="https://github.com/Galimede">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/telemetry-mocha.svg">
+    <img alt="GALIMEDE · telemetry" src="./assets/telemetry-amber.svg">
+  </picture>
+</a>
 
 <sub>▸ self-hosted static cards, refreshed daily by `.github/workflows/telemetry.yml`</sub>
 
