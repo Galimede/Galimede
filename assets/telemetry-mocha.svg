@@ -31,7 +31,7 @@
   <text x="366" y="254" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">0</text>
   <line x1="44" y1="261" x2="366" y2="261" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="280" font-size="13" fill="#6c7086">CONTRIBUTED TO</text>
-  <text x="366" y="280" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">4</text>
+  <text x="366" y="280" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">3</text>
   <line x1="44" y1="287" x2="366" y2="287" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="430" y="112" font-size="13" fill="#cdd6f4">HTML</text>
   <text x="776" y="112" font-size="12" fill="#6c7086" text-anchor="end">30.7%</text>
