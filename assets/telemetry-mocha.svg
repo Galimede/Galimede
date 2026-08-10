@@ -21,7 +21,7 @@
   <text x="366" y="152" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">9</text>
   <line x1="44" y1="159" x2="366" y2="159" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="178" font-size="13" fill="#6c7086">CODE REVIEWS</text>
-  <text x="366" y="178" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">37</text>
+  <text x="366" y="178" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">33</text>
   <line x1="44" y1="185" x2="366" y2="185" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
   <text x="44" y="204" font-size="13" fill="#6c7086">ISSUES</text>
   <text x="366" y="204" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">3</text>
