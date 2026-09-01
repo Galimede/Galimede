@@ -13,7 +13,7 @@
 
   <text x="44" y="86" font-size="11" fill="#6c7086">&#9656; CONTRIBUTION LEDGER</text>
   <text x="430" y="86" font-size="11" fill="#6c7086">&#9656; LANGUAGE DISTRIBUTION</text>
-  <text x="44" y="106" font-size="10" fill="#6c7086" letter-spacing="0.5">&#9666; 2025·08 → 2026·08 &#9656;</text>
+  <text x="44" y="106" font-size="10" fill="#6c7086" letter-spacing="0.5">&#9666; 2025·08 → 2026·09 &#9656;</text>
   <text x="44" y="126" font-size="13" fill="#6c7086">COMMITS</text>
   <text x="366" y="126" font-size="14" font-weight="600" fill="#f9e2af" text-anchor="end">77</text>
   <line x1="44" y1="133" x2="366" y2="133" stroke="#45475a" stroke-width="1" stroke-dasharray="1 4"/>
