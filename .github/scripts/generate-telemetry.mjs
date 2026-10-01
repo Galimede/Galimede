@@ -5,9 +5,9 @@
 // matching the hand-made hero cards in assets/.
 //
 // The contribution ledger is split into two groups so the time scope of each
-// metric is explicit: commits/PRs/reviews/issues come from the contributions
-// collection (a trailing ~12-month window, labelled with its real dates), while
-// stars and repositories-contributed-to are cumulative. A 52-week activity
+// metric is explicit: commits/PRs/reviews/issues and repositories-contributed-to
+// come from the contributions collection (a trailing ~12-month window, labelled
+// with its real dates), while stars are cumulative. A 52-week activity
 // trace under the ledger gives the window a visible shape.
 //
 // Env:
@@ -52,15 +52,16 @@ query($login: String!) {
       totalPullRequestContributions
       totalIssueContributions
       totalPullRequestReviewContributions
+      commitContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } }
+      pullRequestContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } }
+      pullRequestReviewContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } }
+      issueContributionsByRepository(maxRepositories: 100) { repository { nameWithOwner } }
       contributionCalendar {
         weeks {
           firstDay
           contributionDays { contributionCount }
         }
       }
-    }
-    repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, PULL_REQUEST, ISSUE, REPOSITORY]) {
-      totalCount
     }
     repositories(first: 100, ownerAffiliations: OWNER, isFork: false, orderBy: { field: STARGAZERS, direction: DESC }) {
       nodes {
@@ -98,6 +99,19 @@ async function fetchData() {
   const u = json.data.user;
   const c = u.contributionsCollection;
   const stars = u.repositories.nodes.reduce((n, r) => n + r.stargazerCount, 0);
+
+  // Other people's repos touched in the window, by any contribution type.
+  const contributedTo = new Set(
+    [
+      c.commitContributionsByRepository,
+      c.pullRequestContributionsByRepository,
+      c.pullRequestReviewContributionsByRepository,
+      c.issueContributionsByRepository,
+    ]
+      .flat()
+      .map((r) => r.repository.nameWithOwner)
+      .filter((name) => !name.toLowerCase().startsWith(`${LOGIN.toLowerCase()}/`)),
+  ).size;
 
   const langSizes = new Map();
   const langColors = new Map();
@@ -142,13 +156,13 @@ async function fetchData() {
           ['PULL REQUESTS', c.totalPullRequestContributions],
           ['CODE REVIEWS', c.totalPullRequestReviewContributions],
           ['ISSUES', c.totalIssueContributions],
+          ['CONTRIBUTED TO', contributedTo],
         ],
       },
       {
         label: 'CUMULATIVE',
         rows: [
           ['STARS EARNED', stars],
-          ['CONTRIBUTED TO', u.repositoriesContributedTo.totalCount],
         ],
       },
     ],
