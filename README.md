@@ -42,7 +42,7 @@ FILE MANAGER ▸ yazi
 ## ▚ TRANSMISSION LOG
 
 <!--START_SECTION:activity-->
-1. 🗣 Commented on [#1727](https://github.com/CleverCloud/clever-components/pull/1727#issuecomment-4294839651) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
+1. 💪 Opened PR [#1846](https://github.com/CleverCloud/clever-components/pull/1846) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
 2. ❌ Closed PR [#1727](https://github.com/CleverCloud/clever-components/pull/1727) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
 3. 🎉 Merged PR [#1712](https://github.com/CleverCloud/clever-components/pull/1712) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
 4. 🎉 Merged PR [#1715](https://github.com/CleverCloud/clever-components/pull/1715) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
