@@ -42,11 +42,11 @@ FILE MANAGER ▸ yazi
 ## ▚ TRANSMISSION LOG
 
 <!--START_SECTION:activity-->
-1. 💪 Opened PR [#1869](https://github.com/CleverCloud/clever-components/pull/1869) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
-2. ℹ️ Labeled PR [#1868](https://github.com/CleverCloud/clever-components/pull/1868) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
-3. ℹ️ Assigned PR [#1868](https://github.com/CleverCloud/clever-components/pull/1868) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
-4. 💪 Opened PR [#1868](https://github.com/CleverCloud/clever-components/pull/1868) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
-5. ℹ️ Assigned issue [#1855](https://github.com/CleverCloud/clever-components/issues/1855) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
+1. 🎉 Merged PR [#1868](https://github.com/CleverCloud/clever-components/pull/1868) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
+2. 🔒 Closed issue [#1866](https://github.com/CleverCloud/clever-components/issues/1866) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
+3. 🔒 Closed issue [#1855](https://github.com/CleverCloud/clever-components/issues/1855) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
+4. 🎉 Merged PR [#1869](https://github.com/CleverCloud/clever-components/pull/1869) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
+5. 💪 Opened PR [#1869](https://github.com/CleverCloud/clever-components/pull/1869) in [CleverCloud/clever-components](https://github.com/CleverCloud/clever-components)
 <!--END_SECTION:activity-->
 
 <sub>▸ auto-populated daily by `.github/workflows/transmission-log.yml`</sub>
